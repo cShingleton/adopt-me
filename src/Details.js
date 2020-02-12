@@ -1,6 +1,8 @@
 import React from "react";
 import PetAPI from "@frontendmasters/pet";
 
+import Carousel from "./Carousel";
+
 class Details extends React.Component {
   // experimental public field declaration
   state = {
@@ -9,7 +11,7 @@ class Details extends React.Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    PetAPI.animal(this.props.id)
+    PetAPI.animal(Number(this.props.id))
       .then(({ animal }) => {
         this.setState({
           name: animal.name,
@@ -29,9 +31,10 @@ class Details extends React.Component {
       return <h1>loading...</h1>;
     }
 
-    const { animal, breed, location, description, name } = this.state;
+    const { animal, breed, location, description, name, media } = this.state;
     return (
       <div className="details">
+        <Carousel media={media} />
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} - ${breed} - ${location}`}</h2>
