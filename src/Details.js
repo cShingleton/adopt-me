@@ -2,13 +2,11 @@ import React from "react";
 import PetAPI from "@frontendmasters/pet";
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props);
+  // experimental public field declaration
+  state = {
+    loading: false
+  };
 
-    this.state = {
-      loading: false
-    };
-  }
   componentDidMount() {
     this.setState({ loading: true });
     PetAPI.animal(this.props.id)
