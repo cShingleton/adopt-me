@@ -1,7 +1,7 @@
 // Mostly code from the React docs
 
 import React from "react";
-import { Link } from "@reach/router";
+import { Link, Redirect } from "@reach/router";
 
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
@@ -11,7 +11,15 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(error, info) {
     console.error("ErrorBoundary caught an error", error, info);
   }
+  componentDidUpdate() {
+    if (this.state.hasError) {
+      setTimeout(() => this.setState({ redirect: true }), 5000);
+    }
+  }
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
     if (this.state.hasError) {
       return (
         <h1>
