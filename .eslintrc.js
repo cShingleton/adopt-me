@@ -8,7 +8,7 @@ module.exports = {
     "plugin:import/errors",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
+    "plugin:prettier/recommended",
     "prettier/react",
     "prettier/@typescript-eslint"
   ],
@@ -16,6 +16,15 @@ module.exports = {
     // core
     "no-console": 1,
     "no-empty-function": ["error", { allow: ["arrowFunctions"] }],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        allowExpressions: false,
+        allowTypedFunctionExpressions: true,
+        allowHigherOrderFunctions: true
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": ["error"],
     "@typescript-eslint/no-empty-function": [
       "error",
       { allow: ["arrowFunctions"] }
@@ -25,7 +34,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": 2,
     "react-hooks/exhaustive-deps": 1
   },
-  plugins: ["@typescript-eslint", "react", "import", "jsx-a11y", "react-hooks"],
+  plugins: ["react", "import", "jsx-a11y", "react-hooks", "@typescript-eslint"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2019,
@@ -44,6 +53,11 @@ module.exports = {
   settings: {
     react: {
       version: "detect"
+    },
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   }
 };
