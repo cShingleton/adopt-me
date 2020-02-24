@@ -13,8 +13,15 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
-    "react/prop-types": 0,
+    // core
     "no-console": 1,
+    "no-empty-function": ["error", { allow: ["arrowFunctions"] }],
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      { allow: ["arrowFunctions"] }
+    ],
+    // react
+    "react/prop-types": 0,
     "react-hooks/rules-of-hooks": 2,
     "react-hooks/exhaustive-deps": 1
   },
