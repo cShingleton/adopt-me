@@ -1,16 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
-import PetAPI, { ANIMALS } from "@frontendmasters/pet";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  FunctionComponent
+} from "react";
+import PetAPI, { Animal, ANIMALS } from "@frontendmasters/pet";
+import { RouteComponentProps } from "@reach/router";
+
 import Results from "./Results";
 import useDropdown from "./useDropdown";
 import ThemeContext from "./ThemeContext";
 
-const SearchParams = () => {
+const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   // [<currentState>, <updaterFunction>] = <hook>
   const [location, setLocation] = useState("Seattle, WA");
-  const [breeds, setBreeds] = useState([]);
+  const [breeds, setBreeds] = useState([] as string[]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState([] as Animal[]);
   const [theme, setTheme] = useContext(ThemeContext);
 
   async function requestPets() {
@@ -66,7 +73,9 @@ const SearchParams = () => {
             </select>
           </label>
         </label>
-        <button style={{ backgroundColor: theme }}>Submit</button>
+        <button type="submit" style={{ backgroundColor: theme }}>
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>
